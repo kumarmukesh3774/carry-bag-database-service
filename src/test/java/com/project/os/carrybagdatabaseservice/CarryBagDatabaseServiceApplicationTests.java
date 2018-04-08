@@ -72,7 +72,7 @@ public class CarryBagDatabaseServiceApplicationTests {
 		carryBags.add(new CarryBag("hgh","hgh","hgh","hgh",455l,400l,"hgh","hgh"));
 		carryBags.add(new CarryBag("hgh2","hgh","hgh","hgh",488l,444l,"hgh","hgh"));
 
-		Mockito.when(carryBagRepository.findAll()).thenReturn((List)carryBags);
+		Mockito.when(carryBagRepository.findAll()).thenReturn(carryBags);
 		
 		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/bag")
 	               .accept(MediaType.APPLICATION_JSON))
@@ -82,7 +82,7 @@ public class CarryBagDatabaseServiceApplicationTests {
 		;
 		
 		System.out.println(mvcResult+"==============================================");
-		//verify(carryBagRepository).findAll();
+		verify(carryBagRepository).findAll();
 	}
 
 
