@@ -1,5 +1,6 @@
 package com.project.os.carrybagdatabaseservice.resource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.project.os.carrybagdatabaseservice.carrybag.CarryBag;
 import com.project.os.carrybagdatabaseservice.repository.CarryBagRepository;
 @Component
@@ -26,13 +28,20 @@ public class CarryBagController {
 
 		return "Hello";
 	}
-
+	@HystrixCommand(fallbackMethod="fallbackGetAllBag")
 	@GetMapping(value="/bag",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<CarryBag> getAll() {
 
 		return carryBagRepository.findAll();
 	}
-	@PostMapping("/bag")
+	public List<CarryBag> fallbackGetAllBag() {
+		List <CarryBag> emptyList=new ArrayList<CarryBag>();
+		emptyList.add(new CarryBag("default","default","default","default",
+				0l,0l,"default","default"));
+		return emptyList ;
+	}
+	
+	@PostMapping("/bag2")
 	public void addToCarryBag(@RequestBody CarryBag entity) {
 		carryBagRepository.save(entity);
 
