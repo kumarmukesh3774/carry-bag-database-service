@@ -56,7 +56,7 @@ public class CarryBagDatabaseServiceApplication {
 //  
 //    }
 	
-	//creating exchange
+	/*//creating exchange
 	@Bean
 	public TopicExchange appExchange() {
 		return new TopicExchange(EXCHANGE_NAME);
@@ -84,7 +84,7 @@ public class CarryBagDatabaseServiceApplication {
 	@Bean
 	public Binding declareBindingSpecific() {
 		return BindingBuilder.bind(appQueueSpecific()).to(appExchange()).with(ROUTING_KEY);
-	}
+	}*/
 		
 	//For swagger to document the Service
 	@Bean

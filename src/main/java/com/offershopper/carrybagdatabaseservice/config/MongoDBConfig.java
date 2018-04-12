@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.offershopper.carrybagdatabaseservice.model.CarryBag;
+import com.offershopper.carrybagdatabaseservice.model.CarryBagBean;
 import com.offershopper.carrybagdatabaseservice.repository.CarryBagRepository;
 
 @EnableMongoRepositories(basePackageClasses= CarryBagRepository.class)
@@ -18,7 +18,7 @@ public class MongoDBConfig {
 			
 			@Override
 			public void run(String... args) throws Exception {
-				carryBagRepository.save(new CarryBag("fhgh","fhgh","fhgh","fhgh",405l,365l,"fhgh","fhgh"));
+				carryBagRepository.save(new CarryBagBean("rakesh_001","offer_001","offer_image","offer_title",405l,365l,"22-05-2018","vendor_001"));
 				
 			}
 		};
